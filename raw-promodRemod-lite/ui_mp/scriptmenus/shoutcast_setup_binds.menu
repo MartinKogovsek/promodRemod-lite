@@ -1,0 +1,92 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_SIZE_X           150
+#define CHOICE_SIZE_Y           22
+
+#define CHOICE_X_START          0
+#define CHOICE_Y_START          105
+
+#define CHOICE_SEP_1            13
+#define CHOICE_SEP_2            25
+
+#define CHOICE_GROUP            "shoutcast_setup_binds"
+
+#include "ui_mp/menustyle.inc"
+#include "ui_mp/choices_setup_teams.menu"
+
+#define ORIGIN_DESCRIPTION      (CHOICE_X_START + 15) 190
+
+{
+	menuDef 
+	{
+		name			"shoutcast_setup_binds"
+		fullScreen		0
+		rect			0 0 640 480
+		focusColor		COLOR_FOCUSED
+		blurWorld		7.0
+		onOpen
+		{
+			setLocalVarBool ui_hideBack 1;
+			scriptMenuResponse "getdetails";
+		}
+		onClose
+		{
+			setLocalVarBool ui_hideBack 0;
+		}
+		onESC 
+		{ 
+			close self;		
+		}
+
+		#include "ui_mp/ingamebg.inc"
+
+        #define ORIGIN_BANNER       108 48
+
+        CHOICE_MENU_TITLE( "Shoutcast Setup" )
+
+        #define BACK_OPEN   ;
+        #include "ui_mp/navcontrols.inc"
+
+        #undef  CHOICE_X_START
+        #define CHOICE_X_START  -300
+
+        #undef  CHOICE_HORIZONTAL_ALIGN
+        #define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER
+
+        #undef CHOICE_Y_START
+        #define CHOICE_Y_START          30
+
+        CHOICE_SECTION_TITLE( 1, dvarString(shout_attack_name) )
+        CHOICE_SECTION_TITLE( 7, dvarString(shout_defence_name) )
+		CHOICE_BIND( 2, "Player 1", "openscriptmenu shoutcast_setup 1", ; )
+		CHOICE_BIND( 3, "Player 2", "openscriptmenu shoutcast_setup 2", ; )
+		CHOICE_BIND( 4, "Player 3", "openscriptmenu shoutcast_setup 3", ; )
+		CHOICE_BIND( 5, "Player 4", "openscriptmenu shoutcast_setup 4", ; )
+		CHOICE_BIND( 6, "Player 5", "openscriptmenu shoutcast_setup 5", ; )
+		
+		CHOICE_BIND( 8, "Player 1", "openscriptmenu shoutcast_setup 6", ; )
+		CHOICE_BIND( 9, "Player 2", "openscriptmenu shoutcast_setup 7", ; )
+		CHOICE_BIND( 10, "Player 3", "openscriptmenu shoutcast_setup 8", ; )
+		CHOICE_BIND( 11, "Player 4", "openscriptmenu shoutcast_setup 9", ; )
+		CHOICE_BIND( 12, "Player 5", "openscriptmenu shoutcast_setup 10", ; )
+
+		CHOICE_BUTTON( 14, "Players...", close shoutcast_setup_binds; open shoutcast_setup; )
+		CHOICE_BUTTON( 15, "Binds...", close shoutcast_setup_binds; open shoutcast_setup_binds; )
+
+        #undef CHOICE_Y_START
+        #undef  CHOICE_X_START
+        #define CHOICE_Y_START          20
+        #define CHOICE_X_START  -260
+	
+		CHOICE_SECTION_TITLE( 21, "Shoutcaster" )
+		CHOICE_BIND( 22, "Shoutcaster 1", "openscriptmenu shoutcast_setup assault", ; )
+		CHOICE_BIND( 23, "Shoutcaster 2", "openscriptmenu shoutcast_setup specops", ; )
+		CHOICE_BIND( 24, "Shoutcaster 3", "openscriptmenu shoutcast_setup demolitions", ; )
+		CHOICE_BIND( 25, "Shoutcaster 4", "openscriptmenu shoutcast_setup sniper", ; )
+		CHOICE_SEPARATOR_VIS( CHOICE_SEP_2, 1 )
+		CHOICE_BIND( 26, "Shoutcaster Menu", "openscriptmenu quickpromod shoutcaster", ; )
+		CHOICE_BIND( 27, "Overview Map", "openscriptmenu quickpromod overview", ; )
+		CHOICE_KEYBINDHELP
+	}
+}

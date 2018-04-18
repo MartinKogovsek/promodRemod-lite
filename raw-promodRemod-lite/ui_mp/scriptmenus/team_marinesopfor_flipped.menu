@@ -1,0 +1,214 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_SIZE_X           150
+#define CHOICE_SIZE_Y           22
+
+#define CHOICE_X_START          0
+#define CHOICE_Y_START          204
+
+#define CHOICE_SEP_OFFSET_Y     -2
+
+#define CHOICE_SEP_1            4
+#define CHOICE_SEP_2            6
+#define CHOICE_SEP_3            6
+#define CHOICE_SEP_4            6
+#define CHOICE_SEP_5            6
+#define CHOICE_SEP_6            6
+
+
+#include "ui_mp/menustyle.inc"
+#include "ui_mp/choices_setup_teams.menu"
+
+    menuDef
+    {
+        name            "team_marinesopfor_flipped"
+        rect            0 0 640 480
+        focuscolor      COLOR_FOCUSED
+        style           WINDOW_STYLE_EMPTY
+        blurWorld       7.0
+		
+        #include "ui_mp/ingamebg.inc"
+		
+        #undef  CHOICE_X_START
+        #define CHOICE_X_START  -45
+
+        #undef  CHOICE_HORIZONTAL_ALIGN
+        #define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_LEFT
+
+        //CHOICE_MENU_TITLE( "Roccat e-Sports" )
+
+        //#include "ui_mp/tactical_map.inc";
+		//#include "ui_mp/player_info.inc"
+
+
+		//BACKGROUND ELEMENTS
+		//left back square =========================================================
+        itemDef 
+		{
+			rect 0 0 177 1000 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			style WINDOW_STYLE_FILLED
+			border 0
+			bordercolor .5 .5 .5 .5
+			forecolor 1 1 1 1 
+			backcolor 0 0 0 .25
+			visible 1
+			decoration
+		}
+		//logo image
+		itemDef
+		{
+			rect			9 -150 160 160 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		.6 .6 .6 .6
+			style			WINDOW_STYLE_SHADER
+			background		"image_logo"
+			visible 		1
+			decoration
+		}
+		//logo text 
+		itemDef
+		{
+			rect			9 100 160 160 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		0 0 0 .6
+			style			WINDOW_STYLE_SHADER
+			background		"text_logo"
+			visible 		1
+			decoration
+		} 
+		//auto assign to credits background
+        itemDef 
+		{
+			rect 0 10 177 110 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			style WINDOW_STYLE_FILLED
+			border 0
+			bordercolor .5 .5 .5 .5
+			forecolor 1 1 1 1
+			backcolor 0 0 0 .5
+			visible 1
+			decoration
+		}
+		//leave game background 
+		itemDef 
+		{
+			rect 0 140 177 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			style WINDOW_STYLE_FILLED
+			border 0
+			bordercolor .5 .5 .5 .5
+			forecolor 1 1 1 1
+			backcolor 0 0 0 .5
+			visible 1
+			decoration
+		}
+		// ==========================================================================
+
+		#define BACK_OPEN   ;
+        #include "ui_mp/navcontrols.inc"
+
+		//BUTTONS ===================================================================
+        //CHOICE_HIGHLIGHT( 3, 0 )
+        CHOICE_BUTTON_VIS_NOHI( 3, "> Auto-Assign", play "mouse_click"; scriptMenuResponse "autoassign";, 1 )
+
+        //CHOICE_HIGHLIGHT( 4, 0 )
+        CHOICE_BUTTON_VIS_NOHI( 4, "> Spectate", play "mouse_click"; close self;scriptMenuResponse "shoutcast";, when( team( name ) != "TEAM_SPECTATOR" ); )
+        CHOICE_DBUTTON_VIS_NOHI( 4, "> Spectate", when( team( name ) == "TEAM_SPECTATOR" ); )
+
+		//CHOICE_BUTTON_NOHI( 5, "> Admin Login", 0 )
+
+		//CHOICE_HIGHLIGHT( 6, 2 )
+		CHOICE_BUTTON_FOCUS_VIS_NOHI( 6, "> About", ;,setLocalVarBool ui_dev 1; setLocalVarBool ui_remod 0, setLocalVarBool ui_dev 0, when( !localvarBool( ui_hideBack ) )  )
+
+        //CHOICE_HIGHLIGHT( 7, 0 )
+        CHOICE_BUTTON_NOHI( 7, "> Leave Game", close self; open popup_endgame )
+
+        //CHOICE_HIGHLIGHT( 6, 0 )
+        //CHOICE_BUTTON_NOHI( 6, "> Options", close self; open main_options; execnow //"set ui_allow_graphic_change 0"; )
+		//==========================================================================
+
+		//About====================================================================
+		//Box
+		itemDef 
+		{
+			rect -105 -53 210 106 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			style WINDOW_STYLE_FILLED
+			border 1
+			bordercolor 0.498 0.859 1.000 .3
+			forecolor 1 1 1 1
+			backcolor 0 0 0 .6
+			visible when( localvarBool( ui_dev ) )
+			decoration
+		}	
+		//text
+		itemDef
+		{
+			rect		0 -38 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			origin		0 0
+			//text		"9 8 7 6 5 4 3 2 1 10 9 8 7 6 5 4 3 2 1 < Promod remod by: tincxd > 1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 6 7 8 9"
+			text		"< Promod remod by: tincxd >"
+			textfont	UI_FONT_CONSOLE
+			textscale	0.20
+			textalign	ITEM_ALIGN_CENTER
+			textstyle	ITEM_TEXTSTYLE_SHADOWED
+			forecolor   0.498 0.859 1.000 .6
+			visible when( localvarBool( ui_dev ) )
+			decoration 
+		}
+		itemDef
+		{
+			rect		0 -29 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			origin		0 0
+			text		"< Promodlive 220; promodRemod-lite 1.0; >\n< dev@tincxd.com / www.tincxd.com >"
+			textfont	UI_FONT_CONSOLE
+			textscale	0.20
+			textalign	ITEM_ALIGN_CENTER
+			textstyle	ITEM_TEXTSTYLE_SHADOWED
+			forecolor	0.667 0.667 0.667 .6
+			visible when( localvarBool( ui_dev ) )
+			decoration 
+		}
+		itemDef
+		{
+			rect		0 -5 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			origin		0 0
+			text		"< Special thanks to: >                   "
+			textfont	UI_FONT_CONSOLE
+			textscale	0.20
+			textalign	ITEM_ALIGN_CENTER
+			textstyle	ITEM_TEXTSTYLE_SHADOWED
+			forecolor   0.498 0.859 1.000 .6
+			visible when( localvarBool( ui_dev ) )
+			decoration 
+		}
+		itemDef
+		{
+			rect		0 4 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			origin		0 0
+			text		"< Crazy, Duffman, Braxi, TamasSzabto,   >\n< Lina, Poseidon, Cpt.Ak, Zeroy         >"
+			textfont	UI_FONT_CONSOLE
+			textscale	0.20
+			textalign	ITEM_ALIGN_CENTER
+			textstyle	ITEM_TEXTSTYLE_SHADOWED
+			forecolor	0.667 0.667 0.667 .6
+			visible when( localvarBool( ui_dev ) )
+			decoration 
+		}
+		itemDef
+		{
+			rect		0 50 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			origin		0 0
+			text		"< Also thanks to everyone else involved in Promod! >"
+			textfont	UI_FONT_CONSOLE
+			textscale	0.16
+			textalign	ITEM_ALIGN_CENTER
+			textstyle	ITEM_TEXTSTYLE_SHADOWED
+			forecolor	0.667 0.667 0.667 .6
+			visible when( localvarBool( ui_dev ) )
+			decoration 
+		}
+
+		//==========================================================================
+
+        execKey "1" { scriptMenuResponse "allies"; }
+        execKey "2" { scriptMenuResponse "axis"; }
+        execKey "3" { scriptMenuResponse "autoassign"; }
+        execKey "4" { scriptMenuResponse "shoutcast"; }
+    }

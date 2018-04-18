@@ -1,0 +1,154 @@
+#define rank (stat(2350)+1)
+#define plevel (stat(2326))
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_SIZE_X           150
+#define CHOICE_SIZE_Y           22
+
+#define CHOICE_X_START          0
+#define CHOICE_Y_START          204
+
+#define CHOICE_SEP_OFFSET_Y     -2
+
+#define CHOICE_GROUP            "class"
+#define CHOICE_SEP_1            4
+#define CHOICE_SEP_2            6
+#define CHOICE_SEP_3            6
+#define CHOICE_SEP_4            6
+#define CHOICE_SEP_5            6
+#define CHOICE_SEP_6            6
+
+
+#include "ui_mp/menustyle.inc"
+#include "ui_mp/choices_setup_teams.menu"
+#include "ui_mp/player_refresh.inc"
+
+    menuDef
+    {
+        name            "class"
+        rect            0 0 640 480
+        focuscolor      COLOR_FOCUSED
+        style           WINDOW_STYLE_EMPTY
+        blurWorld       7.0
+		onOpen
+		{
+			STAT_UPDATE;
+        }
+        onEsc
+        {
+            scriptMenuResponse "back";
+        }
+		
+        #include "ui_mp/ingamebg.inc"
+		//#include "ui_mp/player_info.inc"
+		
+        #undef  CHOICE_X_START
+        #define CHOICE_X_START  -45
+
+        #undef  CHOICE_HORIZONTAL_ALIGN
+        #define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_LEFT
+
+        CHOICE_MENU_TITLE( "" )
+
+		//#include "ui_mp/tactical_map.inc";
+
+		//BACKGROUND ELEMENTS
+		//left back square =========================================================
+        itemDef 
+		{
+			rect 0 0 177 1000 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			style WINDOW_STYLE_FILLED
+			border 0
+			bordercolor .5 .5 .5 .5
+			forecolor 1 1 1 1 
+			backcolor 0 0 0 .25
+			visible 1
+			decoration
+		}
+		//roccat logo
+		itemDef
+		{
+			rect			9 -150 160 160 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		.6 .6 .6 .6
+			style			WINDOW_STYLE_SHADER
+			background		"image_logo"
+			visible 		1
+			decoration
+		}
+		//logo tincxd 
+		itemDef
+		{
+			rect			9 100 160 160 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			forecolor		0 0 0 .6
+			style			WINDOW_STYLE_SHADER
+			background		"text_logo"
+			visible 		1
+			decoration
+		} 
+		//auto assign to login background
+        itemDef 
+		{
+			rect 0 10 177 110 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			style WINDOW_STYLE_FILLED
+			border 0
+			bordercolor .5 .5 .5 .5
+			forecolor 1 1 1 1
+			backcolor 0 0 0 .5
+			visible 1
+			decoration
+		}
+		//leave game background 
+		itemDef 
+		{
+			rect 0 140 177 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			style WINDOW_STYLE_FILLED
+			border 0
+			bordercolor .5 .5 .5 .5
+			forecolor 1 1 1 1
+			backcolor 0 0 0 .5
+			visible 1
+			decoration
+		}
+		// ==========================================================================
+
+        #define BACK_OPEN;
+        #include "ui_mp/navcontrols.inc"
+		
+		//BUTTONS ===================================================================
+		// attack - defence - 
+        //CHOICE_HIGHLIGHT( 1, 0 )
+        //CHOICE_BUTTON_VIS_NOHI( 1, "^01. " + dvarString( g_TeamName_Allies ), play //"mouse_click"; scriptMenuResponse "allies";, when( ( team( name ) == //"TEAM_SPECTATOR" //|| team(name) == "TEAM_FREE" || team( name ) == //"TEAM_AXIS" //) ); )
+        //CHOICE_DBUTTON_VIS_NOHI( 1, "^01. " + dvarString( g_TeamName_Allies ), when( //team( //name ) == "TEAM_ALLIES" ); )
+        //CHOICE_HIGHLIGHT( 2, 0 )
+        //CHOICE_BUTTON_VIS_NOHI( 2, "^02. " + dvarString( g_TeamName_Axis ), play //"mouse_click"; scriptMenuResponse "axis";, when( ( team( name ) == //"TEAM_SPECTATOR" || //team(name) == "TEAM_FREE" || team( name ) == //"TEAM_ALLIES" ) ); )
+        //CHOICE_DBUTTON_VIS_NOHI( 2, "^02. " + dvarString( g_TeamName_Axis ), when( //team( name //) == "TEAM_AXIS" ); )
+
+        //CHOICE_HIGHLIGHT( 3, 0 )
+        //CHOICE_BUTTON_VIS_NOHI( 3, "> Auto-Assign", play "mouse_click"; //scriptMenuResponse "autoassign";, 1 )
+        
+		//CHOICE_HIGHLIGHT( 3, 0 )
+        CHOICE_BUTTON_VIS_NOHI( 3, "> Choose Class", scriptMenuResponse "changeclass_marines", when( TEAM_IS_MARINES && MAY_CHOOSE_CLASS ) )
+        CHOICE_BUTTON_VIS_NOHI( 3, "> Choose Class", scriptMenuResponse "changeclass_opfor", when( TEAM_IS_OPFOR && MAY_CHOOSE_CLASS ) )
+		
+        //CHOICE_HIGHLIGHT( 4, 0 )
+        CHOICE_BUTTON_NOHI( 4, "> Change Team", scriptMenuResponse "changeteam"; )
+		
+		//CHOICE_HIGHLIGHT( 4, 0 )
+        //CHOICE_BUTTON_NOHI( 4, "Mute Players", open muteplayer; close self; )
+
+        //CHOICE_HIGHLIGHT( 7, 0 )
+        CHOICE_BUTTON_NOHI( 7, "> Leave Game", close self; open popup_endgame )
+		
+		//CHOICE_HIGHLIGHT( 5, 0 )
+        CHOICE_BUTTON_NOHI( 5, "> Controls", close self; open main_controls )
+
+        //CHOICE_HIGHLIGHT( 6, 0 )
+        CHOICE_BUTTON_NOHI( 6, "> Options", close self; open main_options; execnow "set ui_allow_graphic_change 0"; )
+		//==========================================================================
+
+        execKey "1" { scriptMenuResponse "allies"; }
+        execKey "2" { scriptMenuResponse "axis"; }
+        execKey "3" { scriptMenuResponse "autoassign"; }
+        execKey "4" { scriptMenuResponse "shoutcast"; }
+    }
