@@ -15,6 +15,8 @@ PromodRemod-lite is a cod4 promod with added features. Meant for public use, all
   - FPS counter (on/off)
   - Lagometer (on/off)
 
+In the *z_assets* folder you can find premade assets. If you create additional items you are welcome to add them.
+You can also request custom logos and images for your mod. To create alpha channels & transparent images refer to http://cfgfactory.com/tutorials/show/59 and then to convert them use tom-crowley.co.uk/downloads/?id=6.
 
 The mod is still in development, therefore all the feedback is welcome. 
 
