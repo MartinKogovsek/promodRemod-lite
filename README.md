@@ -27,6 +27,7 @@ The mod is still in development, therefore all the feedback is welcome.
 ## Credits
 Promod remod by: 
 - tincxd
+
 Special thanks to:
 - Crazy
 - Duffman
@@ -35,5 +36,6 @@ Special thanks to:
 - Lina
 - Poseidon
 - Cpt.Ak
-- Zeroy
+- Zeroy     
+
 Also thanks to everyone else involved in Promod!
