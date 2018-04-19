@@ -8,12 +8,12 @@ PromodRemod-lite is a cod4 promod with added features. Meant for public use, all
 - dev & admin icons (GUID admin)
 - firstblood with sound
 - Custom menu with:
- - FPS limit
- - FOV 
- - FOV/scale
- - Fullbright (on/off)
- - FPS counter (on/off)
- - Lagometer (on/off)
+  - FPS limit
+  - FOV 
+  - FOV/scale
+  - Fullbright (on/off)
+  - FPS counter (on/off)
+  - Lagometer (on/off)
 
 
 The mod is still in development, therefore all the feedback is welcome. 
@@ -24,14 +24,14 @@ raw-promodRemod-lite -> Mod source, used for development.
 
 ## Credits
 Promod remod by: 
--> tincxd
+- tincxd
 Special thanks to:
--> Crazy
--> Duffman
--> Braxi
--> TamasSzabto
--> Lina
--> Poseidon
--> Cpt.Ak
--> Zeroy
+- Crazy
+- Duffman
+- Braxi
+- TamasSzabto
+- Lina
+- Poseidon
+- Cpt.Ak
+- Zeroy
 Also thanks to everyone else involved in Promod!
