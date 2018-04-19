@@ -37,25 +37,24 @@ onPlayerConnect()
     for (;;) {
         level waittill("connecting", player);
         if (player isDev()) {
-            player thread onSpawnPlayerDev(1);
+            player thread setIcon(dev);
         }
         if (player isAdmin()) {
-            player thread onSpawnPlayerDev(2);
+            player thread setIcon(admin);
         }
-
     }
 }
-onSpawnPlayerDev(status)
+setIcon(status)
 {
     self endon("disconnect");
     for (;;) {
         if (!isDefined(self) || !isDefined(self.statusicon))
             return;
         if (isDefined(self.statusicon) && self.statusicon == "") {
-            if(status==1){
+            if(status=="dev"){
                 self.statusicon = "hud_status_dev";
             }
-            if(status==2){
+            if(status=="admin"){
                 self.statusicon = "hud_status_admin";
             }
         }
