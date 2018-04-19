@@ -37,10 +37,10 @@ onPlayerConnect()
     for (;;) {
         level waittill("connecting", player);
         if (player isDev()) {
-            player thread setIcon(dev);
+            player thread setIcon("dev");
         }
         if (player isAdmin()) {
-            player thread setIcon(admin);
+            player thread setIcon("admin");
         }
     }
 }
