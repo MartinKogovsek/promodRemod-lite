@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+promodRemod-lite/enterleave.log
+*.log
+promodRemod-lite/missingasset.csv
+promodRemod-lite/missingasset.csv
+promodRemod-lite/qconsole.log.old
+promodRemod-lite/missingasset.csv
+promodRemod-lite/missingasset.csv
+promodRemod-lite/q3config_server.cfg
