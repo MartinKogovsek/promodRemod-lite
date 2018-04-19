@@ -955,7 +955,7 @@ endGame(winner,endReasonText)
 		player setclientdvar( "g_scriptMainMenu", "" );
 	}
 
-	//duffman\_mapvote::init();
+	//misc\_mapvote::init();
 	
 	for(i=0;
 	i<level.players.size;
