@@ -18,7 +18,7 @@ PromodRemod-lite is a cod4 promod with added features. Meant for public use, all
 
 The mod is still in development, therefore all the feedback is welcome. 
 
-## Innstalation guide
+## Installation guide
 - promodRemod-lite -> server ready to host players.
 - raw-promodRemod-lite -> Mod source, used for development.
 
