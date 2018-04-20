@@ -50,6 +50,7 @@ menufile,ui_mp\scriptmenus\quickpromodgfx.menu
 menufile,ui_mp\scriptmenus\team_marinesopfor.menu
 menufile,ui_mp\scriptmenus\team_marinesopfor_flipped.menu
 menufile,ui_mp\scriptmenus\clientcmd.menu
+menufile,ui_mp\scriptmenus\vote.menu
 
 rawfile,promod\client.gsc
 rawfile,promod\comp.gsc
