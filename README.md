@@ -19,7 +19,7 @@ The mod is still in development, therefore all the feedback is welcome.
 
 ## Assets
 In the *z_assets* folder you can find premade assets. If you create additional items you are welcome to add them.
-You can also request custom logos and images for your mod. To create alpha channels & transparent images refer to http://cfgfactory.com/tutorials/show/59 and then to convert them use tom-crowley.co.uk/downloads/?id=6.
+You can also request custom logos and images for your mod. To create alpha channels & transparent images refer to http://cfgfactory.com/tutorials/show/59 and then to convert them use http://tom-crowley.co.uk/downloads/?id=6.
 
 ## Installation guide
 - promodRemod-lite -> server ready to host players.
