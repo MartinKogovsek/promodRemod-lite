@@ -135,7 +135,7 @@
 		{
 			rect		0 -29 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
 			origin		0 0
-			text		"< Promodlive 220; promodRemod-lite 1.0; >\n< dev@tincxd.com / www.tincxd.com >"
+			text		"< Promodlive 220; promodRemod-lite 1.1; >\n< dev@tincxd.com / www.tincxd.com >"
 			textfont	UI_FONT_CONSOLE
 			textscale	0.20
 			textalign	ITEM_ALIGN_CENTER
@@ -167,6 +167,19 @@
 			textalign	ITEM_ALIGN_CENTER
 			textstyle	ITEM_TEXTSTYLE_SHADOWED
 			forecolor	0.667 0.667 0.667 .6
+			visible when( localvarBool( ui_dev ) )
+			decoration 
+		}
+		itemDef
+		{
+			rect		0 42 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_CENTER
+			origin		0 0
+			text		"< Project w/ source available on gitHub >"
+			textfont	UI_FONT_CONSOLE
+			textscale	0.20
+			textalign	ITEM_ALIGN_CENTER
+			textstyle	ITEM_TEXTSTYLE_SHADOWED
+			forecolor   0.498 0.859 1.000 .6
 			visible when( localvarBool( ui_dev ) )
 			decoration 
 		}
