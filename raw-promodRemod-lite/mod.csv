@@ -8,6 +8,26 @@ material,hud_status_admin
 material,image_logo
 material,text_logo
 
+material,loadscreen_mp_backlot
+material,loadscreen_mp_bloc
+material,loadscreen_mp_bog
+material,loadscreen_mp_broadcast
+material,loadscreen_mp_cargoship
+material,loadscreen_mp_citystreets
+material,loadscreen_mp_convoy
+material,loadscreen_mp_countdown
+material,loadscreen_mp_crash
+material,loadscreen_mp_crossfire
+material,loadscreen_mp_dusk
+material,loadscreen_mp_farm
+material,loadscreen_mp_hill
+material,loadscreen_mp_overgrown
+material,loadscreen_mp_pipeline
+material,loadscreen_mp_shipment
+material,loadscreen_mp_showdown
+material,loadscreen_mp_strike
+material,loadscreen_mp_vacant
+
 rawfile,shock\damage_mp.shock
 rawfile,mp\playeranim.script
 
@@ -51,7 +71,7 @@ menufile,ui_mp\scriptmenus\team_marinesopfor.menu
 menufile,ui_mp\scriptmenus\team_marinesopfor_flipped.menu
 menufile,ui_mp\scriptmenus\clientcmd.menu
 menufile,ui_mp\scriptmenus\vote.menu
-
+ 
 rawfile,promod\client.gsc
 rawfile,promod\comp.gsc
 rawfile,promod\dvarmon.gsc

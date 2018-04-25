@@ -12,8 +12,9 @@
         borderColor               0 0 0 0
         outlineColor              0 0 0 0
         blurWorld                 7
-        onOpen                    { exec -scores ;  }
-        onESC                     { Open popup_endgame  }
+        onOpen                    {  }
+        onClose                   {  }
+        onESC                     { open class  }
         focusColor                1 1 1 1
         disableColor              0 0 0 0
         visible 0                 
@@ -34,20 +35,6 @@
         }
         itemDef
         {
-            rect                      380 450 50 15 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
-            foreColor                 1 1 1 1
-            backColor                 0 0 0 0
-            borderColor               0 0 0 0
-            outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
-            text                      "By ^5G.H.O.$.T"
-            visible 1                 
-            decoration                
-        }
-        itemDef
-        {
             name                      "map1"
             rect                      70 100 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
             style                     WINDOW_STYLE_SHADER
@@ -57,11 +44,25 @@
             backColor                 1 1 1 0
             borderColor               0 0 0 1
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName0" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName0" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map1dlc"
+            rect                      70 100 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName0" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -76,7 +77,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 1" ; scriptMenuResponse map1 ;  }
+            action                    { play mouse_click ; exec "set vote_map 1" ; scriptMenuResponse map1 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -93,7 +94,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "1" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "1" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -136,9 +137,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName0" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -153,10 +152,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes0" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -174,7 +171,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName1" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName1" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map2dlc"
+            rect                      240 100 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName1" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -189,7 +202,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 2" ; scriptMenuResponse map2 ;  }
+            action                    { play mouse_click ; exec "set vote_map 2" ; scriptMenuResponse map2 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -206,7 +219,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "2" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "2" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -249,9 +262,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName1" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -266,10 +277,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes1" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -287,7 +296,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName2" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName2" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map3dlc"
+            rect                      410 100 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName2" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -302,7 +327,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 3" ; scriptMenuResponse map3 ;  }
+            action                    { play mouse_click ; exec "set vote_map 3" ; scriptMenuResponse map3 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -319,7 +344,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "3" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "3" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -362,9 +387,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName2" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -379,10 +402,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes2" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -400,7 +421,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName3" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName3" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map4dlc"
+            rect                      70 200 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName3" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -415,7 +452,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 4" ; scriptMenuResponse map4 ;  }
+            action                    { play mouse_click ; exec "set vote_map 4" ; scriptMenuResponse map4 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -432,7 +469,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "4" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "4" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -475,9 +512,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName3" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -492,10 +527,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes3" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -513,7 +546,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName4" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName4" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map5dlc"
+            rect                      240 200 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName4" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -528,7 +577,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 5" ; scriptMenuResponse map5 ;  }
+            action                    { play mouse_click ; exec "set vote_map 5" ; scriptMenuResponse map5 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -545,7 +594,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "5" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "5" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -588,9 +637,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName4" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -605,10 +652,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes4" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -626,7 +671,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName5" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName5" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map6dlc"
+            rect                      410 200 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName5" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -641,7 +702,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 6" ; scriptMenuResponse map6 ;  }
+            action                    { play mouse_click ; exec "set vote_map 6" ; scriptMenuResponse map6 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -658,7 +719,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "6" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "6" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -701,9 +762,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName5" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -718,10 +777,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes5" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -739,7 +796,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName6" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName6" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map7dlc"
+            rect                      70 300 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName6" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -754,7 +827,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 7" ; scriptMenuResponse map7 ;  }
+            action                    { play mouse_click ; exec "set vote_map 7" ; scriptMenuResponse map7 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -771,7 +844,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "7" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "7" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -814,9 +887,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName6" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -831,10 +902,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes6" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -852,7 +921,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName7" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName7" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map8dlc"
+            rect                      240 300 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName7" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -867,7 +952,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 8" ; scriptMenuResponse map8 ;  }
+            action                    { play mouse_click ; exec "set vote_map 8" ; scriptMenuResponse map8 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -884,7 +969,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "8" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "8" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -927,9 +1012,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName7" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -944,10 +1027,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes7" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -965,7 +1046,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_picName8" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName8" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "map9dlc"
+            rect                      410 300 162 92 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" && dvarstring( "hud_picName8" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -980,7 +1077,7 @@
             outlineColor              0 0 0 0
             type                      ITEM_TYPE_BUTTON
             textScale                 0.55
-            action                    { play mouse_click ; exec "set ui_selected_vote 9" ; scriptMenuResponse map9 ;  }
+            action                    { play mouse_click ; exec "set vote_map 9" ; scriptMenuResponse map9 ;  }
             onFocus                   { play mouse_over ; setItemColor self backcolor 0 1 0 0.25 ;  }
             leaveFocus                { setItemColor self backcolor 1 1 1 0 ;  }
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
@@ -997,7 +1094,7 @@
             borderColor               1 1 1 1
             outlineColor              0 0 0 0
             textScale                 0.55
-            visible                   when ( ( dvarstring( "ui_selected_vote" ) == "9" && dvarstring( "hud_ShowWinner" ) != "1" ) )
+            visible                   when ( ( dvarstring( "vote_map" ) == "9" && dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
         }
         itemDef
@@ -1040,9 +1137,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
-            textScale                 0.25
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
+            textScale                 0.3
             exp                       text ( ( dvarstring( "hud_mapName8" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -1057,10 +1152,8 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  UI_FONT_OBJECTIVE
             textAlign                 ITEM_ALIGN_TOP_CENTER
             textScale                 0.3
-            textStyle                 ITEM_TEXTSTYLE_SHADOWED
             exp                       text ( ( dvarstring( "hud_mapVotes8" ) + "/" + dvarstring( "hud_gamesize" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) != "1" ) )
             decoration                
@@ -1078,7 +1171,23 @@
             outlineColor              0 0 0 0
             textScale                 0.55
             exp                       material ( ( dvarstring( "hud_WinningName" ) ) );
-            visible                   when ( ( dvarstring( "hud_ShowWinner" ) == "1" ) )
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) == "1" && dvarstring( "hud_WinningName" ) != "white" ) )
+            decoration                
+        }
+        itemDef
+        {
+            name                      "WinningMapDlc"
+            rect                      70 100 505 295 HORIZONTAL_ALIGN_SUBLEFT VERTICAL_ALIGN_SUBTOP
+            style                     WINDOW_STYLE_SHADER
+            border                    WINDOW_BORDER_FULL
+            borderSize                1
+            foreColor                 1 1 1 0.75
+            backColor                 0 0 0 0
+            borderColor               0 0 0 1
+            outlineColor              0 0 0 0
+            background                "background_american_w"
+            textScale                 0.55
+            visible                   when ( ( dvarstring( "hud_ShowWinner" ) == "1" && dvarstring( "hud_WinningName" ) == "white" ) )
             decoration                
         }
         itemDef
@@ -1106,9 +1215,7 @@
             backColor                 0 0 0 0
             borderColor               0 0 0 0
             outlineColor              0 0 0 0
-            textFont                  9
-            textScale                 0.45
-            textStyle                 ITEM_TEXTSTYLE_SHADOWEDMORE
+            textScale                 0.6
             exp                       text ( ( dvarstring( "hud_WinningMap" ) ) );
             visible                   when ( ( dvarstring( "hud_ShowWinner" ) == "1" ) )
             decoration                

@@ -17,13 +17,21 @@ The mod is still in development, therefore all the feedback is welcome.
   - FPS counter (on/off)
   - Lagometer (on/off)
 
+You can request or suggest new features and we may add them.
+New features are being added constantly.
+
 ## Assets
 In the *z_assets* folder you can find premade assets. If you create additional items you are welcome to add them.
 You can also request custom logos and images for your mod. To create alpha channels & transparent images refer to http://cfgfactory.com/tutorials/show/59 and then to convert them use http://tom-crowley.co.uk/downloads/?id=6.
 
 ## Installation guide
-- promodRemod-lite -> server ready to host players.
-- raw-promodRemod-lite -> Mod source, used for development.
+######promodRemod-lite -> server ready to host players.
+On how to setup server refer to 
+Features will be explained one by one in our pR-wiki.
+For basic use only edit iwd files, _general.gsc and server config.
+
+######raw-promodRemod-lite -> Mod source, used for development.
+On how to compile mods refer to http://wiki.modsrepository.com/index.php?title=COD4;
 
 ## Credits
 Promod remod by: tincxd
@@ -39,3 +47,9 @@ Special thanks to:
 - Zeroy     
 
 Also thanks to everyone else involved in Promod!
+
+##Patch notes
+```
+######V1.0 - Deploy 
+
+```
