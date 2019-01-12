@@ -6,9 +6,9 @@ The mod is still in development, therefore all the feedback is welcome.
 ## Features
 - Final killcam with music
 - Custom logo image & text
-- knife_mp model
-- dev & admin icons (GUID admin)
-- firstblood with sound
+- Knife_mp model & knife round
+- Dev & Admin icons (GUID admin)
+- Firstblood with sound
 - Custom menu with:
   - FPS limit
   - FOV 
