@@ -2,6 +2,7 @@
 #include maps\mp\gametypes\_hud_util;
 #include maps\mp\gametypes\_globallogic_utils;
 #include promod\_common;
+#include misc\misc;
 
 init()
 {
@@ -48,6 +49,11 @@ init()
 	level.numKills = 0;
 	level.mapVoteStatus = 0;
 
+	level.hudFadeOut = false;
+	level.hudFadeIn = false;
+
+		thread misc\dvars::init();
+
 	registerDvars();
 
 		precacheShader("gradient");
@@ -64,20 +70,46 @@ init()
 	level.timelimit=getDvarFloat("scr_"+level.gametype+"_timelimit");
 	level.scoreLimit=getDvarInt("scr_"+level.gametype+"_scorelimit");
 	level.numLives=getDvarInt("scr_"+level.gametype+"_numlives");
+	
 	setDvar("ui_scorelimit",level.scoreLimit);
 	setDvar("ui_timelimit",level.timelimit);
 	setdvar("_ChangeName", "Unknown");
 	setdvar("takewep", "");
 	setDvar("player_meleeRange", 64);
 	setDvar("ui_favoriteAddress", "127.0.0.1");
-	
 	setdvar("_Promod_Version", "pml220");
-	
-	// GENERAL SCRIPT MANAGER CALL
-	thread _general::init();
-	level.mapVoteStatus = thread _general::mapVote();
-}
 
+		setDvar( "player_sprinttime", 8 );
+		setDvar( "g_gravity", 600 );
+		setDvar( "g_speed", 210 );
+		setDvar( "jump_height", 45 );
+		setDvar( "player_sprintspeedscale", 1.6 );
+
+	thread misc\misc::initMisc();
+	level thread promod\_common::load();
+	misc\_eventmanager::init();
+
+	thread _general::init();
+
+	level.mapVoteStatus = thread _general::mapVote();
+	level.devIcon = thread _general::devIcon();
+	level.overlay = thread _general::overlay();
+	level.health = thread _general::health();
+	level.settings_menu = thread _general::settingsMenu();
+	level.kdRatio = thread _general::kdratio();
+	level.welcomeText = thread _general::welcomeText();
+	level.hostnameRounds = thread _general::hostnameRounds();
+
+	if(level.devIcon != 0){ thread misc\_dev::init(); }
+	if(level.health > 0){ thread misc\_health::init(); }
+	if(level.settings_menu == 1){ thread misc\_settings_menu::init(); }
+	if(level.kdRatio > 0){ level thread misc\_kdratio::init(); }
+	if(level.welcomeText != 0){ thread misc\_welcome::welcomeText(); }
+
+	misc\_accuracy::init();
+
+	self thread misc\_hud::init();
+}
 
 registerDvars()
 {
@@ -269,6 +301,8 @@ matchStartTimer()
 	visionSetNaked(getDvar("mapname"),1);
 	matchStartText destroyElem();
 	matchStartWish destroyElem(); 
+
+	self notify("x_strat_over");
 }
 stratText(eredeti)
 {
@@ -492,9 +526,7 @@ in_spawnSpectator(origin,angles)
 getPlayerFromClientNum(clientNum)
 {
 	if(clientNum<0)return undefined;
-	for(i=0;
-	i<level.players.size;
-	i++)
+	for(i=0;i<level.players.size;i++)
 	{
 		if(level.players[i]getEntityNumber()==clientNum)return level.players[i];
 	}
@@ -526,9 +558,7 @@ freeLook(condition)
 	if(getDvarInt("scr_game_spectatetype")==1)
 	{
 		if(condition)wait 0.1;
-		for(i=0;
-		i<level.players.size;
-		i++)
+		for(i=0; i<level.players.size; i++)
 		{
 			player=level.players[i];
 			if(player.pers["team"]=="spectator")
@@ -731,6 +761,8 @@ endGame(winner,endReasonText)
 	{
 		if(level.displayRoundEndText)
 		{
+			self thread misc\_hud::hudBckFadeOut();
+
 			for(i=0;
 			i<level.players.size;
 			i++)
@@ -931,14 +963,12 @@ endGame(winner,endReasonText)
 		player setclientdvar( "g_scriptMainMenu", "" );
 	}
 	
-
 	MusicStop( 2 );
-	wait 6;
-	visionSetNaked("mpIntro",4);
+	//wait 6;
+	visionSetNaked("mpIntro",3);
 	if(level.mapVoteStatus == 1){
 		startvote();
 	}
-
 
 	for(i=0;
 	i<level.players.size;
@@ -952,14 +982,59 @@ endGame(winner,endReasonText)
 		player setClientDvar("ui_hud_hardcore",0);
 	}
 
-
 	wait 4;
 	if(isDefined(game["PROMOD_MATCH_MODE"])&&game["PROMOD_MATCH_MODE"]=="match")
 	{
 		map_restart(false);
 		return;
 	}
+
+	// players = level.players;
+	// for ( index = 0; index < players.size; index++ )
+	// {
+	// 	player = players[index];
+		
+	// 	player setSpawnVariables();
+		
+	// 	player.sessionstate = "intermission";
+	// 	player.spectatorclient = -1;
+	// 	player.killcamentity = -1;
+	// 	player.archivetime = 0;
+	// 	player.psoffsettime = 0;
+		
+	// }
+		
+	// thread timeLimitClock_Intermission( 10 );
+	// wait 10;
+
+	// SetExpFog(1000, 1500, 1, 1, 1, 0.1);
+	// level notify( "time_over" );
+	// blackscreen = addTextHud( level, 0, 0, 1, "center", "middle", "center", "middle", 3, 9999999 );
+	// blackscreen setShader("white",1000,1000);
+	// blackscreen.color = (0,0,0);
+	// blackscreen1 = addTextHud( level, 0, 0, 1, "center", "middle", "center", "middle", 3, 9999999 );
+	// blackscreen1 setShader("white",1000,1000);
+	// blackscreen1.color = (0,0,0);
+	// blackscreen thread fadeIn(1.5);
+	// blackscreen1 thread fadeIn(1.5);
+	// wait 1.8;		  	
+	// setDvar("timescale",1);
+
 	exitLevel(false);
+}
+timeLimitClock_Intermission( waitTime )
+{
+	setGameEndTime( getTime() + int(waitTime*1000) );
+	clockObject = spawn( "script_origin", (0,0,0) );
+	
+	if ( waitTime >= 10.0 )
+		wait ( waitTime - 10.0 );
+		
+	for ( ;; )
+	{
+		clockObject playSound( "ui_mp_timer_countdown" );
+		wait ( 1.0 );
+	}	
 }
 getWinningTeam()
 {
@@ -1004,7 +1079,6 @@ roundEndWait(defaultDelay)
 roundEndDOF(time)
 {
 	self setDepthOfField(0,128,512,4000,6,1.8);
-	
 }
 getHighestScoringPlayer()
 {
@@ -2137,6 +2211,8 @@ Callback_StartGameType()
 	thread maps\mp\gametypes\_hud_message::init();
 	thread maps\mp\gametypes\_quickmessages::init();
 	thread promod\scorebot::main();
+	if(level.hostnameRounds != 0)
+		thread misc\_hostname::init();
 	if(level.mapVoteStatus == 1){
 		thread initvote();
 	}
@@ -2544,7 +2620,7 @@ Callback_PlayerKilled(eInflictor,attacker,iDamage,sMeansOfDeath,sWeapon,vDir,sHi
 	{
 		if(isDefined(attacker))
 		{
-			attacker thread misc\firstblood::killedPlayer( self, sWeapon, sMeansOfDeath );
+			attacker thread misc\_firstblood::killedPlayer( self, sWeapon, sMeansOfDeath );
 		}
 	}
 
@@ -2863,9 +2939,14 @@ getObjectiveHintText(team)
 startvote()  
 {
 	wait getDvarFloat("scr_intermission_time");
-	level.invoting=1; 	for(i=0;i<level.players.size;i++) 	 
+	level.invoting=1; 	
+	level thread playSoundOnAllPlayers( "end" );
+	for(i=0;i<level.players.size;i++) 	 
 	{
-		player=level.players[i];                    player.sessionteam = "spectator"; 	         player.sessionstate = "spectator"; 	         player [[level.spawnSpectator]]();
+		player=level.players[i];                    
+		player.sessionteam = "spectator"; 	         
+		player.sessionstate = "spectator"; 	        
+		player [[level.spawnSpectator]]();
 		player closeMenu();
 		player closeInGameMenu();
 		player openMenu("vote");
@@ -2881,21 +2962,18 @@ startvote()
 	wait getDvarFloat("scr_vote_time");
 	for(i=0;i<level.players.size;i++) 	 
 	{
-		player=level.players[i]; 		player setClientDvar( "hud_voteText", "^3Next Map:" );
+		player=level.players[i]; 		
+		player setClientDvar( "hud_voteText", "^3Next Map:" );
 		player setClientDvar( "hud_ShowWinner", "1" );
-		
 	}
-	level.invoting=2; 	if(level.maptok[getHighestVotedMap()]!="Restart") 	setDvar( "sv_maprotationcurrent", "gametype " + strTok(level.votemaps[getHighestVotedMap()],";")[1] + " map " + strTok(level.votemaps[getHighestVotedMap()],";")[0] );
-	else 	setDvar( "sv_maprotationcurrent", "gametype " + getdvar("g_gametype") + " map " + getDvar("mapname") );
+	level.invoting=2; 	
+	if(level.maptok[getHighestVotedMap()]!="Restart") 	
+		setDvar( "sv_maprotationcurrent", "gametype " + strTok(level.votemaps[getHighestVotedMap()],";")[1] + " map " + strTok(level.votemaps[getHighestVotedMap()],";")[0] );
+	else 	
+		setDvar( "sv_maprotationcurrent", "gametype " + getdvar("g_gametype") + " map " + getDvar("mapname") );
 	wait getDvarFloat("vote_winner_time");
-	for(i=0;i<level.players.size;i++) 	 
-	{
-		player=level.players[i]; 		player setClientDvar( "ui_inVote", "0" );
-		player setClientDvar( "hud_ShowWinner", "0" );
-		player closemenu();
-		
-	}
-	level.invoting=0;   	level notify("stopparty");
+
+	level.invoting=0;   	
 	SetExpFog(1000, 1500, 1, 1, 1, 0.1);
 	level notify( "time_over" );
 	blackscreen = addTextHud( level, 0, 0, 1, "center", "middle", "center", "middle", 3, 9999999 );
@@ -2906,7 +2984,18 @@ startvote()
 	blackscreen1.color = (0,0,0);
 	blackscreen thread fadeIn(1.5);
 	blackscreen1 thread fadeIn(1.5);
-	wait 1.8;		  	setDvar("timescale",1);
+	wait 1.8;		  	
+	setDvar("timescale",1);
+
+	for(i=0;i<level.players.size;i++) 	 
+	{
+		player=level.players[i]; 		
+		player setClientDvar( "ui_inVote", "0" );
+		player setClientDvar( "hud_ShowWinner", "0" );
+		player closemenu();
+		
+	}
+
 	exitLevel(false);
 }
 initvote()  
@@ -2924,7 +3013,10 @@ initvote()
 	}
 	waittillframeend; 	for( i=0; i < 9; i++ ) 	 
 	{
-		if(isdefined(level.votemaps[i])) 		level.mapTok[i] = getMapNameString(strtok(level.votemaps[i],";")[0]) + " " + getGameTypeString( strtok(level.votemaps[i],";")[1])+""; 		else	 		level.mapTok[i] = "Restart"; 	 
+		if(isdefined(level.votemaps[i])) 		
+			level.mapTok[i] = getMapNameString(strtok(level.votemaps[i],";")[0]) + " " + getGameTypeString( strtok(level.votemaps[i],";")[1])+"";
+		else	 		
+			level.mapTok[i] = "Restart"; 	 
 	}
 	for( i=0; i < level.mapTok.size; i++ ) 	 
 	{
@@ -2934,13 +3026,18 @@ initvote()
 }
 isLegal(map)  
 {
-	if(map == (getDvar("mapname") + ";" + getDvar("g_gametype")))  	return false; 	for(i=0;i<level.votemaps.size;i++) 	if(level.votemaps[i] == map) 	return false; 	return true;  
+	if(map == (getDvar("mapname") + ";" + getDvar("g_gametype")))  	return false; 	
+	for(i=0;i<level.votemaps.size;i++) 	if(level.votemaps[i] == map) 	return false; 	
+	return true;  
 }
 restructMapArray(oldArray, index)  
 {
 	restructArray = [];  	for( i=0; i < oldArray.size; i++)  
 	{
-		if(i < index)  		restructArray[i] = oldArray[i]; 		else if(i > index)  		restructArray[i - 1] = oldArray[i]; 	 
+		if(i < index)  		
+			restructArray[i] = oldArray[i]; 		
+		else if(i > index)  		
+			restructArray[i - 1] = oldArray[i]; 	 
 	}
 	return restructArray;  
 }
@@ -2955,14 +3052,14 @@ updateMenuDisplay()
 		self setClientDvar(("hud_mapName"+i), level.mapTok[i]);
 		
 	}
-	wait .3;  	for(;;) 	 
+	wait .3;  	
+	for(;;) 	 
 	{
 		for(i=0; i < level.mapTok.size; i++)  		 
 		{
 			self setClientDvar("hud_gamesize", level.players.size);
 			self setClientDvar(("hud_mapVotes"+i), level.mapVotes[i]);
 			self setClientDvar(("hud_mapName"+i), level.mapTok[i]);
-			
 		}
 		self setClientDvar(("hud_mapVotes"+getHighestVotedMap()), ("^3"+level.mapVotes[getHighestVotedMap()]));
 		self setClientDvar(("hud_mapName"+getHighestVotedMap()), ("^3"+level.mapTok[getHighestVotedMap()]));
@@ -2977,9 +3074,9 @@ getHighestVotedMap()
 	{
 		if( level.mapVotes[i] > highest )  		 
 		{
-			highest = level.mapVotes[i]; 			position = i; 		 
+			highest = level.mapVotes[i]; 			
+			position = i; 		 
 		}
-		
 	}
 	return position;  
 }
@@ -2990,9 +3087,11 @@ handleVoting()
 	level.RandomMap = level.mapTok[randomInt(level.mapTok.size)] ;   	level.winMap =  level.RandomMap;  	while( level.players.size > 0 ) 	 
 	{
 		winNumberA = getHighestVotedMap();
-		level.winMap = level.mapTok[winNumberA] ; 		for(i=0;i<level.players.size;i++) 		 
+		level.winMap = level.mapTok[winNumberA] ; 		
+		for(i=0;i<level.players.size;i++) 		 
 		{
-			player=level.players[i]; 			player setClientDvar(("hud_WinningName"), getPreviewName(toLower(level.mapTok[winNumberA])));
+			player=level.players[i]; 			
+			player setClientDvar(("hud_WinningName"), getPreviewName(toLower(level.mapTok[winNumberA])));
 			player setClientDvar(("hud_WinningMap"), ("^3" + level.mapTok[winNumberA]));
 			
 		}
@@ -3037,15 +3136,3 @@ getMapNameString( mapName )
 	return mapName;  
 }
 
-/*
-fadeOut(time)  
-{
-	if(!isDefined(self)) return; 	self fadeOverTime(time);
-	self.alpha = 0; 	wait time; 	if(!isDefined(self)) return; 	self destroy();
-
-}
-fadeIn(time)  
-{
-	alpha = self.alpha; 	self.alpha = 0; 	self fadeOverTime(time);
-	self.alpha = alpha;  
-}*/

@@ -498,7 +498,7 @@
 		backcolor	1 1 1 1
 		visible 	when ((CHEATS && (DEVELOPER || FPS || MAXPACKETS || DLIGHT || RLOAD || RLOD || RATE || DYNENT || HICONH || HICONW || HICONSCOPE || HICONOFF || HDAMITIME || VSMOOTH || FINVERT || SME || NOPREDICT || COMPLEQU || COMFREQU || FEATHER || AUTOMELEE)) || ( team( name ) == "TEAM_FREE" && dvarString("g_gametype") != "dm" ) )
 
-		DVAR_ENFORCER_ITEM(1,"SET COM_MAXFPS WITHIN 40-250",FPS)
+		//DVAR_ENFORCER_ITEM(1,"SET COM_MAXFPS WITHIN 40-250",FPS)
 		DVAR_ENFORCER_ITEM(2,"SET CL_MAXPACKETS TO 100",MAXPACKETS)
 		DVAR_ENFORCER_ITEM(3,"SET R_DLIGHTLIMIT TO 0",DLIGHT)
 		DVAR_ENFORCER_ITEM(4,"SET R_LODSCALESKINNED TO 1",RLOAD)
@@ -508,7 +508,7 @@
 		DVAR_ENFORCER_ITEM(8,"SET CG_HUDDAMAGEICONHEIGHT TO 64",HICONH)
 		DVAR_ENFORCER_ITEM(9,"SET CG_HUDDAMAGEICONWIDTH TO 128",HICONW)
 		DVAR_ENFORCER_ITEM(10,"SET RATE TO 25000",RATE)
-		DVAR_ENFORCER_ITEM(11,"SET COM_MAXFPS WITHIN 40-250",FPS)
+		//DVAR_ENFORCER_ITEM(11,"SET COM_MAXFPS WITHIN 40-250",FPS)
 		DVAR_ENFORCER_ITEM(12,"SET CG_HUDDAMAGEICONINSCOPE TO 0",HICONSCOPE)
 		DVAR_ENFORCER_ITEM(13,"SET CG_HUDDAMAGEICONOFFSET TO 128",HICONOFF)
 		DVAR_ENFORCER_ITEM(14,"SET CG_HUDDAMAGEICONTIME TO 2000",HDAMITIME)
@@ -538,7 +538,7 @@
             visible            1
             decoration
         }
-
+        /*
         itemDef
         {
             style            WINDOW_STYLE_SHADER
@@ -548,6 +548,7 @@
             visible            1
             decoration
         }
+		*/
         itemDef
         {
             rect        0 35 1 1 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_TOP
@@ -560,18 +561,18 @@
             visible     1
             decoration
         }
-		/*
+		
 		//logo text 
 		itemDef
 		{
-			rect			10 -150 160 160 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			rect			1 -62 160 160 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
 			forecolor		0 0 0 .6
 			style			WINDOW_STYLE_SHADER
 			background		"text_logo"
 			visible 		1
 			decoration
 		} 
-		*/
+		
     }
 
 

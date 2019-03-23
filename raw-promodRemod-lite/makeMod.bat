@@ -47,17 +47,14 @@ cls
 cd
 echo _________________________________________________________________
 echo.
-echo  Building promodlive211.iwd:
-del promodlive211.iwd
-del promodlive216.iwd
+echo  Building promodlive.iwd:
 del z_custom_ruleset.iwd
-del z_roccat.iwd
-del z_promodRemod.iwd
+del z_z_pR.iwd
 del z_c_r.iwd
 
-7za a -r -tzip z_promodRemod.iwd images
-7za a -r -tzip z_promodRemod.iwd sound
-7za a -r -tzip z_promodRemod.iwd weapons
+7za a -r -tzip z_pR.iwd images
+7za a -r -tzip z_pR.iwd sound
+7za a -r -tzip z_pR.iwd weapons
 7za a -r -tzip z_c_r.iwd promod_ruleset
 echo.
 echo Completed: %time%
@@ -123,7 +120,7 @@ goto :MAKEOPTIONS
 :startmod
 cls
 cd ..\..\
-START server.exe +g_gametype sd +set fs_game mods/%modname% +developer 2 +devmap mp_crash 
+START server.exe +set developer 1 +g_gametype sd +set fs_game mods/%modname% +devmap mp_crash 
 cd %COMPILEDIR%
 pause
 goto :MAKEOPTIONS

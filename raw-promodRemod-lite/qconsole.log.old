@@ -1,0 +1,204 @@
+
+Logfile opened on Wed Jan 30 18:57:02 2019
+
+
+^2frag_grenade_mp: WEAPON_FRAGGRENADE
+^2frag_grenade_short_mp: WEAPON_FRAGGRENADE
+^2smoke_grenade_mp: WEAPON_SMOKEGRENADE
+^2flash_grenade_mp: WEAPON_FLASHGRENADE
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_physics' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_autodog' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletimpact' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletwhizby' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_element' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2d' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehicle' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehiclelimited' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_menu' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body2d' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload2d' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_item' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects1' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects2' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon2d' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_nonshock' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_voice' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local2' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_ambient' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_hurt' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player1' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player2' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_music' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_musicnopause' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_mission' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_announcer' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_shellshock' in file 'shock/default.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_physics' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_autodog' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletimpact' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletwhizby' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_element' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2d' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehicle' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehiclelimited' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_menu' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body2d' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload2d' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_item' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects1' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects2' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon2d' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_nonshock' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_voice' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local2' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_ambient' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_hurt' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player1' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player2' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_music' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_musicnopause' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_mission' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_announcer' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_shellshock' in file 'shock/flashbang.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_physics' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_autodog' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletimpact' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletwhizby' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_element' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2d' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehicle' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehiclelimited' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_menu' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body2d' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload2d' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_item' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects1' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects2' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon2d' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_nonshock' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_voice' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local2' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_ambient' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_hurt' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player1' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player2' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_music' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_musicnopause' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_mission' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_announcer' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_shellshock' in file 'shock/frag_grenade_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_physics' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_autodog' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletimpact' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_bulletwhizby' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_element' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_auto2d' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehicle' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_vehiclelimited' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_menu' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_body2d' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_reload2d' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_item' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects1' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_effects2' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_weapon2d' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_nonshock' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_voice' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_local2' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_ambient' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_hurt' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player1' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_player2' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_music' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_musicnopause' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_mission' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_announcer' in file 'shock/damage_mp.shock'
+^3Warning: WARNING: unknown cvar 'bg_shock_volume_shellshock' in file 'shock/damage_mp.shock'
+^2briefcase_bomb_mp: WEAPON_BRIEFCASE_BOMB_PLANT
+^2briefcase_bomb_defuse_mp: WEAPON_BRIEFCASE_BOMB_DEFUSE
+By using this software you agree to the usage conditions you can find at https://github.com/callofduty4x/CoD4x_Server#usage-conditions-for-server-hosters
+-----------------------------------
+^4Calculate referenced files checksums...
+^4CRC32 for main/iw_11.iwd is e9cf411f Len 151420446
+^4CRC32 for mods/raw-promodRemod-lite/z_c_r.iwd is 5abcc047 Len 2373
+^4CRC32 for mods/raw-promodRemod-lite/z_pR.iwd is f2481813 Len 658435
+^4CRC32 for zone/english/code_post_gfx_mp.ff is b144581c Len 89196
+^4CRC32 for zone/english/common_mp.ff is 4ef7a074 Len 13517381
+^4CRC32 for mods/raw-promodRemod-lite/mod.ff is 406cc8f0 Len 492013
+^4CRC32 for zone/english/mp_crash.ff is 9440e82a Len 35287381
+Steam: Server connected successfully
+GameServer is not VAC Secure!
+GameServer SteamID: [A:1:185495562]
+Resolving cod4master.activision.com 
+Sending master heartbeat from 0.0.0.0:28960 to 188.165.57.239:20810
+Sending master heartbeat from 0.0.0.0:28960 to 5.9.235.222:20810
+cod4master.activision.com resolved to 185.34.104.231:20810
+^5Hitch warning: 3456 msec frame time
+Masterserver needs token to complete registration
+Masterserver needs token to complete registration
+^2SV packet 185.34.104.231:20810: getchallenge 1027563869
+Resolving cod4master.activision.com
+cod4master.activision.com resolved to 185.34.104.231:20800
+^2SV packet 185.34.104.231:20810: getstatus 1027563869
+Can not register server on the masterserver. Server needs to provide a valid token in cvar sv_authtoken.
+Can not register server on the masterserver. Server needs to provide a valid token in cvar sv_authtoken.
+quitting...
+All plugins have terminated
+----- Server Shutdown -----
+
+With the reason: EXE_SERVERQUIT
+Can not register server on the masterserver. Server needs to provide a valid token in cvar sv_authtoken.
+Can not register server on the masterserver. Server needs to provide a valid token in cvar sv_authtoken.
+Can not register server on the masterserver. Server needs to provide a valid token in cvar sv_authtoken.
+Can not register server on the masterserver. Server needs to provide a valid token in cvar sv_authtoken.
+==== ShutdownGame (1) ====
+---------------------------
+Unloading assets from fastfile 'mp_crash' and deleting all assets
+Unloading assets from fastfile 'mod' and deleting all assets
+Unloading assets from fastfile 'common_mp' and deleting all assets
+Unloading assets from fastfile 'localized_code_post_gfx_mp' and deleting all assets
+Unloading assets from fastfile 'code_post_gfx_mp' and deleting all assets
+Unloaded fastfile 'mp_crash'
+PMem_Free( mp_crash, Low )
+^2freed 4056.96
+PMem_Free( mp_crash, High )
+Unloaded fastfile 'mod'
+PMem_Free( mod, Low )
+^2freed 4054.12
+PMem_Free( mod, High )
+Unloaded fastfile 'common_mp'
+PMem_Free( common_mp, Low )
+PMem_Free( common_mp, High )
+^2freed 4093.13
+Unloaded fastfile 'localized_code_post_gfx_mp'
+PMem_Free( localized_code_post_gfx_mp, Low )
+^2freed 4092.43
+PMem_Free( localized_code_post_gfx_mp, High )
+Unloaded fastfile 'code_post_gfx_mp'
+PMem_Free( code_post_gfx_mp, Low )
+^2freed 4091.96
+PMem_Free( code_post_gfx_mp, High )

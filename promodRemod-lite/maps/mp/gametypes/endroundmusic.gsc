@@ -24,13 +24,10 @@ init()
 	AddEndRoundMusic("endround22"); //JUST COPY PASTE AND EDIT SOUNDALIASES NAME
 	AddEndRoundMusic("endround23"); //JUST COPY PASTE AND EDIT SOUNDALIASES NAME
 	AddEndRoundMusic("endround24"); //JUST COPY PASTE AND EDIT SOUNDALIASES NAME
-	AddEndRoundMusic("endround25"); //JUST COPY PASTE AND EDIT SOUNDALIASES NAME
-	
-	
 }
 endRound()
 {
-	song = (1+randomInt(25));
+	song = (1+randomInt(23));
 	level thread playSoundOnAllPlayers( "endround" + song );   
 }
 AddEndRoundMusic(name)

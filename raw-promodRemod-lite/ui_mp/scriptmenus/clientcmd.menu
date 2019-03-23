@@ -1,5 +1,4 @@
 #include "ui/menudef.h"
-
 {
 	menuDef 
 	{

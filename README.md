@@ -28,7 +28,7 @@ You can also request custom logos and images for your mod. To create alpha chann
 ## Installation guide
 #### promodRemod-lite -> server ready to host players.
 
-On how to setup server refer to 
+On how to setup server refer to https://docs.cod4x.me/server-configuration.html;
 Features will be explained one by one in our pR-wiki.
 For basic use only edit iwd files, _general.gsc and server config.
 

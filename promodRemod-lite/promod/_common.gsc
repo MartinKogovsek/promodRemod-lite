@@ -1,13 +1,3 @@
-/*===================================================================||
-||/|¯¯¯¯¯¯¯\///|¯¯|/////|¯¯|//|¯¯¯¯¯¯¯¯¯|//|¯¯¯¯¯¯¯¯¯|//\¯¯\/////¯¯//||
-||/|  |//\  \//|  |/////|  |//|  |/////////|  |//////////\  \///  ///||
-||/|  |///\  \/|  |/////|  |//|  |/////////|  |///////////\  \/  ////||
-||/|  |///|  |/|  |/////|  |//|   _____|///|   _____|//////\    /////||
-||/|  |////  //|  \/////|  |//|  |/////////|  |/////////////|  |/////||
-||/|  |///  ////\  \////  ////|  |/////////|  |/////////////|  |/////||
-||/|______ //////\_______/////|__|/////////|__|/////////////|__|/////||
-||===================================================================*/
-
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 #include common_scripts\utility;
@@ -802,4 +792,233 @@ setWeapon(weap) {
 warning(error) {
 	log("warnings.log","WARNING: " + error + " (" +getDvar("time")+ ").","append");
 	devPrint("WARNING: " + error);
+}
+getPlayingPlayers()
+{
+	players = getAllPlayers();
+	array = [];
+	for( i = 0; i < players.size; i++ )
+	{
+		if( players[i] isReallyAlive() && players[i].pers["team"] != "spectator" ) 
+			array[array.size] = players[i];
+	}
+	return array;
+}
+restrictSpawnAfterTime( time )
+{
+	wait time;
+	level.allowSpawn = false;
+}
+getBestPlayerFromTime()
+{
+	score = 999999999;
+	guy = undefined;
+	players = getAllPlayers();
+	for( i = 0; i < players.size; i++ )
+	{
+		if( players[i].pers["time"] <= score )
+		{
+			score = players[i].pers["time"];
+			guy = players[i];
+		}
+	}
+	return guy;
+}
+bounce( pos, power )//This function doesnt require to thread it
+{
+	oldhp = self.health;
+	self.health = self.health + power;
+	self setClientDvars( "bg_viewKickMax", 0, "bg_viewKickMin", 0, "bg_viewKickRandom", 0, "bg_viewKickScale", 0 );
+	self finishPlayerDamage( self, self, power, 0, "MOD_PROJECTILE", "none", undefined, pos, "none", 0 );
+	self.health = oldhp;
+	self thread bounce2();
+}
+bounce2()
+{
+	self endon( "disconnect" );
+	wait .05;
+	self setClientDvars( "bg_viewKickMax", 90, "bg_viewKickMin", 5, "bg_viewKickRandom", 0.4, "bg_viewKickScale", 0.2 );
+}
+spawnCollision( origin, height, width )
+{
+	level.colliders[level.colliders.size] = spawn( "trigger_radius", origin, 0, width, height );
+	level.colliders[level.colliders.size-1] setContents( 1 );
+	level.colliders[level.colliders.size-1].targetname = "script_collision";
+}
+spawnSmallCollision( origin )
+{
+	level.colliders[level.colliders.size] = spawn( "script_model", origin );
+	level.colliders[level.colliders.size-1] setContents( 1 );
+	level.colliders[level.colliders.size-1].targetname = "script_collision";
+}
+deleteAfterTime( time )
+{
+	wait time;
+	if( isDefined( self ) )
+		self delete();
+}
+canStartRound( min )
+{
+	count = 0;
+	players = getAllPlayers();
+	for( i = 0; i < players.size; i++ )
+	{
+		if( players[i] isPlaying() )
+				count++;
+	}
+	if( count >= min )
+		return true;
+	return false;
+}
+waitForPlayers( requiredPlayersCount )
+{
+	quit = false;
+	while( !quit )
+	{
+		wait 0.5;
+		count = 0;
+		players = getAllPlayers();
+		for( i = 0; i < players.size; i++ )
+		{
+			if( players[i] isPlaying() )
+				count++;
+		}
+		if( count >= requiredPlayersCount )
+			break;
+	}
+}
+canSpawn()
+{
+	if( level.freeRun || self.pers["lifes"] )
+		return true;
+	if( !level.allowSpawn )
+		return false;
+	if( self.died )
+		return false;
+	return true;
+}
+isReallyAlive()
+{
+	if( self.sessionstate == "playing" )
+		return true;
+	return false;
+}
+isPlaying()
+{
+	return isReallyAlive();
+}
+doDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc )
+{
+	self finishPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, 0 );
+}
+loadWeapon( name, attachments, image )
+{
+	array = [];
+	array[0] = name;
+	if( isDefined( attachments ) )
+	{
+		addon = strTok( attachments, " " );
+		for( i = 0; i < addon.size; i++ )
+			array[array.size] = name + "_" + addon[i];
+	}
+	for( i = 0; i < array.size; i++ )
+		precacheItem( array[i] + "_mp" );
+	if( isDefined( image ) )
+		precacheShader( image );
+}
+thirdPerson()
+{
+	if( !isDefined( self.tp ) )
+	{
+		self.tp = true;
+		self setClientDvar( "cg_thirdPerson", 1 );
+		
+		if( isDefined(self.hud["3rdpcrosshair"]) )
+			self.hud["3rdpcrosshair"] destroy();
+			
+		self.hud["3rdpcrosshair"] = newClientHudElem( self );
+		self.hud["3rdpcrosshair"].x = 0;
+		self.hud["3rdpcrosshair"].y = 0;
+		self.hud["3rdpcrosshair"].alignX = "center";
+		self.hud["3rdpcrosshair"].alignY = "middle";
+		self.hud["3rdpcrosshair"].horzAlign = "center";
+		self.hud["3rdpcrosshair"].vertAlign = "middle";
+		self.hud["3rdpcrosshair"].foreground = true;
+		self.hud["3rdpcrosshair"] setShader( "reticle_flechette", 32, 32 );
+	}
+	else
+	{
+		self.tp = undefined;
+		self setClientDvar( "cg_thirdPerson", 0 );
+		
+		if( isDefined(self.hud["3rdpcrosshair"]) )
+			self.hud["3rdpcrosshair"] destroy();
+	}
+}
+getBestPlayerFromScore( type )
+{
+	score = 0;
+	guy = undefined;
+	players = getAllPlayers();
+	for( i = 0; i < players.size; i++ )
+	{
+		if ( players[i].pers[type] >= score )
+		{
+			score = players[i].pers[type];
+			guy = players[i];
+		}
+	}
+	return guy;
+}
+delayStartRagdoll( ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath )
+{
+	if ( isDefined( ent ) )
+	{
+		deathAnim = ent getcorpseanim();
+		if ( animhasnotetrack( deathAnim, "ignore_ragdoll" ) )
+			return;
+	}
+	wait( 0.2 );
+	if ( !isDefined( ent ) )
+		return;
+	if ( !isDefined( vDir ) )
+		vDir = (0,0,0);
+	explosionPos = ent.origin + ( 0, 0, getHitLocHeight( sHitLoc ) );
+	explosionPos -= vDir * 20;
+	//thread debugLine( ent.origin + (0,0,(explosionPos[2] - ent.origin[2])), explosionPos );
+	explosionRadius = 40;
+	explosionForce = .75;
+	if ( sMeansOfDeath == "MOD_IMPACT" || sMeansOfDeath == "MOD_EXPLOSIVE" || isSubStr(sMeansOfDeath, "MOD_GRENADE") || isSubStr(sMeansOfDeath, "MOD_PROJECTILE") || sHitLoc == "object" || sHitLoc == "helmet" )
+	{
+		explosionForce = 2.9;
+	}
+	ent startragdoll( 1 );
+	wait .05;
+	if ( !isDefined( ent ) )
+		return;
+	// apply extra physics force to make the ragdoll go crazy
+	physicsExplosionSphere( explosionPos, explosionRadius, explosionRadius/2, explosionForce );
+	return;
+}
+delayedMenu()
+{
+	self endon( "disconnect" );
+	wait 0.05; //waitillframeend;
+	self openMenu( game["menu_team"] );
+}
+waitTillNotMoving()
+{
+	prevorigin = self.origin;
+	while( isDefined( self ) )
+	{
+		wait .15;
+		if ( self.origin == prevorigin )
+			break;
+		prevorigin = self.origin;
+	}
+}
+SetDvarIfUninitialized( dvarName, value )
+{
+	if( getDvar(dvarName) == "" )
+		setDvar( dvarName, value );
 }

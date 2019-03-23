@@ -13,11 +13,12 @@ finalKillcamWaiter()
 
 postRoundFinalKillcam()
 {
+	level.music = thread _general::killcamMusic();
 	level notify( "play_final_killcam" );
-
 	if(level.gametype == "sd"){ // only sd usable
-		song = (1+randomInt(25));
-		ambientplay( "endround" + song );
+		song = (1+randomInt(24));
+		if(level.music == 1)
+			ambientplay( "endround" + song );
 	}
 
 	maps\mp\gametypes\_globallogic_utils::resetOutcomeForAllPlayers();

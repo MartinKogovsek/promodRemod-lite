@@ -27,6 +27,7 @@
 			open shoutcast;
         }
         #include "ui_mp/ingamebg.inc"
+		#include "ui_mp/mod_info.inc"
 
         #define ORIGIN_BANNER       108 48
 

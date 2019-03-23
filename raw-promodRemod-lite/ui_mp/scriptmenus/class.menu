@@ -52,6 +52,7 @@
         CHOICE_MENU_TITLE( "" )
 
 		//#include "ui_mp/tactical_map.inc";
+		#include "ui_mp/mod_info.inc"
 
 		//BACKGROUND ELEMENTS
 		//left back square =========================================================
@@ -116,35 +117,21 @@
         #include "ui_mp/navcontrols.inc"
 		
 		//BUTTONS ===================================================================
-		// attack - defence - 
-        //CHOICE_HIGHLIGHT( 1, 0 )
-        //CHOICE_BUTTON_VIS_NOHI( 1, "^01. " + dvarString( g_TeamName_Allies ), play //"mouse_click"; scriptMenuResponse "allies";, when( ( team( name ) == //"TEAM_SPECTATOR" //|| team(name) == "TEAM_FREE" || team( name ) == //"TEAM_AXIS" //) ); )
-        //CHOICE_DBUTTON_VIS_NOHI( 1, "^01. " + dvarString( g_TeamName_Allies ), when( //team( //name ) == "TEAM_ALLIES" ); )
-        //CHOICE_HIGHLIGHT( 2, 0 )
-        //CHOICE_BUTTON_VIS_NOHI( 2, "^02. " + dvarString( g_TeamName_Axis ), play //"mouse_click"; scriptMenuResponse "axis";, when( ( team( name ) == //"TEAM_SPECTATOR" || //team(name) == "TEAM_FREE" || team( name ) == //"TEAM_ALLIES" ) ); )
-        //CHOICE_DBUTTON_VIS_NOHI( 2, "^02. " + dvarString( g_TeamName_Axis ), when( //team( name //) == "TEAM_AXIS" ); )
-
-        //CHOICE_HIGHLIGHT( 3, 0 )
-        //CHOICE_BUTTON_VIS_NOHI( 3, "> Auto-Assign", play "mouse_click"; //scriptMenuResponse "autoassign";, 1 )
-        
-		//CHOICE_HIGHLIGHT( 3, 0 )
         CHOICE_BUTTON_VIS_NOHI( 3, "> Choose Class", scriptMenuResponse "changeclass_marines", when( TEAM_IS_MARINES && MAY_CHOOSE_CLASS ) )
         CHOICE_BUTTON_VIS_NOHI( 3, "> Choose Class", scriptMenuResponse "changeclass_opfor", when( TEAM_IS_OPFOR && MAY_CHOOSE_CLASS ) )
 		
-        //CHOICE_HIGHLIGHT( 4, 0 )
         CHOICE_BUTTON_NOHI( 4, "> Change Team", scriptMenuResponse "changeteam"; )
 		
-		//CHOICE_HIGHLIGHT( 4, 0 )
-        //CHOICE_BUTTON_NOHI( 4, "Mute Players", open muteplayer; close self; )
-
-        //CHOICE_HIGHLIGHT( 7, 0 )
         CHOICE_BUTTON_NOHI( 7, "> Leave Game", close self; open popup_endgame )
 		
-		//CHOICE_HIGHLIGHT( 5, 0 )
-        CHOICE_BUTTON_NOHI( 5, "> Controls", close self; open main_controls )
+		CHOICE_BUTTON_FOCUS_VIS_NOHI( 6, "> About", ;,setLocalVarBool ui_dev 1; setLocalVarBool ui_remod 0, setLocalVarBool ui_dev 0, when( !localvarBool( ui_hideBack ) )  )
 
-        //CHOICE_HIGHLIGHT( 6, 0 )
-        CHOICE_BUTTON_NOHI( 6, "> Options", close self; open main_options; execnow "set ui_allow_graphic_change 0"; )
+		CHOICE_BUTTON_NOHI( 5, "> Settings", close self; open mod_settings )
+		
+        //CHOICE_BUTTON_NOHI( 5, "> Controls", close self; open main_controls )
+
+        //CHOICE_BUTTON_NOHI( 6, "> Options", close self; open main_options; execnow "set ui_allow_graphic_change 0"; )
+		
 		//==========================================================================
 
         execKey "1" { scriptMenuResponse "allies"; }

@@ -47,6 +47,7 @@
 
         #define BACK_OPEN   ;
         #include "ui_mp/navcontrols.inc"
+		#include "ui_mp/mod_info.inc"
 
         #undef  CHOICE_X_START
         #define CHOICE_X_START  -300
@@ -123,5 +124,6 @@
 		SHOUT_CLASS_THING(31,"Sniper")
 		
         #include "ui/safearea.menu"
+
     }
 }

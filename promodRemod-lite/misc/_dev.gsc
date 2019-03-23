@@ -1,23 +1,24 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 #include maps\mp\gametypes\_globallogic_utils;
+#include promod\_common;
 
 //< Developers > ======================================================================
-isDev()
+isDeveloper()
 {
     switch (self getGuid()) {
-    case "00000000847ee25aff19ba10e0f4fbf4": //enter dev's guid ("/pb_myguid" in client console or "status" in server console)
+    case "4e6605d6847ee25aff19ba10e0f4fbf4": //enter dev's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
     case "enterDevGuidHere": //enter dev's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
     }
     return false;
 }
-//< Admins > ==>
+//< Admins > =======>
 isAdmin()
 {
     switch (self getGuid()) {
-    case "00000000847ee25aff19ba10dwa4": //enter admins's guid ("/pb_myguid" in client console or "status" in server console)
+    case "a4d0bffe3a57f9529248ce8c0f0124f7": //enter admins's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
     case "enterAdminGuidHere": //enter admins's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
@@ -28,15 +29,15 @@ isAdmin()
 
 init()
 {
-    level thread onPlayerConnect();
     precacheStatusIcon("hud_status_dev");
     precacheStatusIcon("hud_status_admin");
+    level thread onPlayerConnect();
 }
 onPlayerConnect()
 {
     for (;;) {
         level waittill("connecting", player);
-        if (player isDev()) {
+        if (player isDeveloper()) {
             player thread setIcon("dev");
         }
         if (player isAdmin()) {

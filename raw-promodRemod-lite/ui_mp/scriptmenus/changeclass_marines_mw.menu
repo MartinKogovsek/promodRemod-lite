@@ -74,6 +74,7 @@
 		#include "ui_mp/navcontrols.inc"
 		//#include "ui_mp/leftside_options.inc"
 		#include "ui_mp/teamicon.inc"
+		#include "ui_mp/mod_info.inc"
 
 		CHOICE_HIGHLIGHT( 1, 1 )
 		CHOICE_BUTTON_VIS_NOHI( 1, "Assault", scriptMenuResponse "assault";, when( dvarBool( allies_allow_assault ) || dvarString( loadout_curclass ) == "assault" ) )

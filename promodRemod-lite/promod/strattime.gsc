@@ -1,5 +1,5 @@
 #include maps\mp\gametypes\_hud_util;
-//#include promod\_common;
+
 main()
 {
 	if(game["promod_timeout_called"])
@@ -52,6 +52,7 @@ stratTime()
 {
 	thread stratTimer();
 	level.strat_over=false;
+	
 	strat_time_left=game["PROMOD_STRATTIME"]+level.prematchPeriod*int(getDvarInt("promod_allow_strattime")&&isDefined(game["CUSTOM_MODE"])&&game["CUSTOM_MODE"]&&level.gametype=="sd");while(!level.strat_over)
 	{
 		players=getentarray("player","classname");
@@ -69,7 +70,7 @@ stratTime()
 
 stratTimer()
 {
-	level.instrattime = true;
+	visionSetNaked("mpIntro",0);
 
 	matchStartText = createServerFontString( "objective", 1.5 ); 
     matchStartText setPoint( "CENTER", "CENTER", 0, -60 ); 
@@ -97,7 +98,7 @@ stratTimer()
 	matchStartWish.glowalpha = 1;
 	
 	level waittill("strat_over");
-	
+
 	if (isDefined(matchStartText) || isDefined( matchStartTimer ) || isDefined( matchStartWish )) 
 	{
 		matchStartText fadeOverTime(1.2);
@@ -109,6 +110,8 @@ stratTimer()
 		matchStartWish MoveOverTime( 6 );
 		matchStartWish setPoint( "CENTER", "CENTER", -1000, -25 );
 		matchStartWish.alpha = 0;
+
+		visionSetNaked(getDvar("mapname"),1);
 
 		wait 8;
 		matchStartText destroy();

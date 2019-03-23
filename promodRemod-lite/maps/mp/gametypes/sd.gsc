@@ -105,6 +105,7 @@ onStartGameType()
 
 onSpawnPlayer()
 {
+	self setClientDvar("r_fog", 1);
 	self.isPlanting=false;
 	self.isDefusing=false;
 	if(self.pers["team"]==game["attackers"])spawnPointName="mp_sd_spawn_attacker";
@@ -196,8 +197,8 @@ bombs()
 		bombZone=maps\mp\gametypes\_gameobjects::createUseObject(game["defenders"],trigger,visuals,(0,0,64));
 		bombZone maps\mp\gametypes\_gameobjects::allowUse("enemy");
 		bombZone maps\mp\gametypes\_gameobjects::setUseTime(level.plantTime);
-		bombZone maps\mp\gametypes\_gameobjects::setUseText("( ^7.^5.^7.^5Planting^7.^5.^7. ^7)");
-		bombZone maps\mp\gametypes\_gameobjects::setUseHintText("( ^5Press^7 { ^3F ^7}^5 to ^5plant^7 )");
+		bombZone maps\mp\gametypes\_gameobjects::setUseText("Planting...");
+		bombZone maps\mp\gametypes\_gameobjects::setUseHintText("Press ^3F^7 to plant");
 		if(!level.multiBomb)bombZone maps\mp\gametypes\_gameobjects::setKeyObject(level.sdBomb);
 		label=bombZone maps\mp\gametypes\_gameobjects::getLabel();
 		bombZone.label=label;bombZone maps\mp\gametypes\_gameobjects::set2DIcon("friendly","compass_waypoint_defend"+label);
@@ -288,7 +289,7 @@ onUsePlantObject(player)
 	if(level.gameEnded)return;
 	if(!self maps\mp\gametypes\_gameobjects::isFriendlyTeam(player.pers["team"]))
 	{
-		if(!level.hardcoreMode)iPrintLn("^3Explosives Planted by^7: ^5",player.name);
+		if(!level.hardcoreMode)iPrintLn("^3Explosives Planted by^7: ",player.name);
 		maps\mp\gametypes\_globallogic::givePlayerScore("plant",player);
 		for(i=0;
 		i<level.bombZones.size;
@@ -313,7 +314,7 @@ onUseDefuseObject(player)
 	level thread bombDefused();
 	self maps\mp\gametypes\_gameobjects::disableObject();
 	playSoundOnPlayers("promod_defused");
-	if(!level.hardcoreMode)iPrintLn("^3Explosives Defused by^7: ^5",player.name);
+	if(!level.hardcoreMode)iPrintLn("^3Explosives Defused by^7: ",player.name);
 	maps\mp\gametypes\_globallogic::givePlayerScore("defuse",player);
 	player thread[[level.onXPEvent]]("defuse");
 	if(isDefined(level.scorebot)&&level.scorebot)game["promod_scorebot_ticker_buffer"]+="defused_by"+player.name;
@@ -324,7 +325,7 @@ onDrop(player)
 {
 	if(!level.bombPlanted)
 	{
-		if(isDefined(player)&&isDefined(player.name))printOnTeamArg("^3Explosives Dropped by^7: ^5",game["attackers"],player);
+		if(isDefined(player)&&isDefined(player.name))printOnTeamArg("^3Explosives Dropped by^7: ",game["attackers"],player);
 		if(isDefined(level.scorebot)&&level.scorebot&&isDefined(player)&&isDefined(player.name))game["promod_scorebot_ticker_buffer"]+="dropped_bomb"+player.name;
 	}
 	self maps\mp\gametypes\_gameobjects::set3DIcon("friendly","waypoint_bomb");
@@ -336,7 +337,7 @@ onPickup(player)
 	self maps\mp\gametypes\_gameobjects::set3DIcon("friendly","waypoint_defend");
 	if(!level.bombDefused)
 	{
-		if(isDefined(player)&&isDefined(player.name))printOnTeamArg("^3Explosives Recovered by^7: ^5",game["attackers"],player);
+		if(isDefined(player)&&isDefined(player.name))printOnTeamArg("^3Explosives Recovered by^7: ",game["attackers"],player);
 		if(isDefined(level.scorebot)&&level.scorebot&&isDefined(player)&&isDefined(player.name))game["promod_scorebot_ticker_buffer"]+="pickup_bomb"+player.name;
 	}
 	playSoundOnPlayers(game["bomb_recovered_sound"],game["attackers"]);
@@ -381,8 +382,8 @@ bombPlanted(destroyedObj,player)
 	defuseObject=maps\mp\gametypes\_gameobjects::createUseObject(game["defenders"],trigger,visuals,(0,0,32));
 	defuseObject maps\mp\gametypes\_gameobjects::allowUse("friendly");
 	defuseObject maps\mp\gametypes\_gameobjects::setUseTime(level.defuseTime);
-	defuseObject maps\mp\gametypes\_gameobjects::setUseText("( ^7.^5.^7.^5Defusing^7.^5.^7. ^7)");
-	defuseObject maps\mp\gametypes\_gameobjects::setUseHintText("( ^5Press^7 { ^3F ^7}^5 to ^5defuse^7 )");
+	defuseObject maps\mp\gametypes\_gameobjects::setUseText("Defusing...");
+	defuseObject maps\mp\gametypes\_gameobjects::setUseHintText("Press ^3F^7 to defuse");
 	defuseObject maps\mp\gametypes\_gameobjects::setVisibleTeam("any");
 	defuseObject maps\mp\gametypes\_gameobjects::set2DIcon("friendly","compass_waypoint_defuse"+label);
 	defuseObject maps\mp\gametypes\_gameobjects::set2DIcon("enemy","compass_waypoint_defend"+label);
@@ -438,7 +439,7 @@ bombDefused()
 
 intoSpawn(originA, anglesA)
 {
-	roundspl = self getStat(3132);
+	level.roundspl = self getStat(3132);
 	if(isDefined(self.pers["gotani"]))
 		return;
 	self.pers["gotani"] = true;
@@ -465,10 +466,6 @@ intoSpawn(originA, anglesA)
 	self unlink();
 	ent delete();
 	self freezeControls( false );
-	if (roundspl==0)
-	{
-		self playLocalSound("welcome");
-	}
 }
 
 ispawnang(ent){

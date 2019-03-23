@@ -61,17 +61,16 @@
 		itemDef
 		{
 			rect		12 10 1 1 HORIZONTAL_ALIGN_RIGHT VERTICAL_ALIGN_TOP
-			origin		90 0
-			text		"< tincxd / 2018 >< www.tincxd.com >"
-			textfont	UI_FONT_CONSOLE
-			textscale	0.14
+			origin		80 1
+			text		"< promodRemod-lite / v 1.2 >< tincxd / 2018 >< www.tincxd.com >"
+			textfont	UI_FONT_DEFAULT
+			textscale	0.18
 			textalign	ITEM_ALIGN_RIGHT
 			textstyle	ITEM_TEXTSTYLE_SHADOWED
 			forecolor	0.498 0.859 1.000 .3 
 			visible 	1
 			decoration 
 		}
-		
 		#include "ui/safearea.menu"
 	}
 }
