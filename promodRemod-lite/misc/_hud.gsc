@@ -38,13 +38,13 @@ hudmsg(text) {
 	msg.foreground = 1;
 	msg.hideWhenInMenu = true;
 	msg.archived = true;
-    msg.alpha = 0;
-    msg FadeOverTime( 1 );
+    	msg.alpha = 0;
+    	msg FadeOverTime( 1 );
 	msg.alpha = 0.6;
 	msg.fontScale = 1.4;
 	//self.msg.color = ( 0, .99, .0 );
 	msg.glowAlpha = 1;
-    msg.glowColor = (0.000, 0.455, 0.851);
+    	msg.glowColor = (0.000, 0.455, 0.851);
 	msg MoveHud(30,-1300);
 	wait 20;
 	msg destroy();
