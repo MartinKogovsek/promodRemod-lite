@@ -52,11 +52,21 @@ Special thanks to:
 Also thanks to everyone else involved in Promod!
 
 ## Patch notes
-#### V1.1 - Deploy 
+#### V2.1 - Deploy 
+```
+## Added Features
+- fixed MapVote for GPanels
+
+Feedback Welcome
+```
+#### V1.2 - Deploy 
 ```
 ## Added Features
 - _general.gsc Script manager
 - MW2 MapVote
+- accuracy
+- K/D Ratio
+- ...
 
 Feedback Welcome
 ```
@@ -67,7 +77,7 @@ First version.
 ## Features
 - Final killcam with music
 - Custom logo image & text
-- knife_mp model
+- knife_mp model, kniferound
 - dev & admin icons (GUID admin)
 - firstblood with sound
 - Custom menu with:
