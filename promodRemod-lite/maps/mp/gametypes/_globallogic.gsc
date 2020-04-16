@@ -2936,6 +2936,7 @@ getObjectiveHintText(team)
 	return game["strings"]["objective_hint_"+team];
 }
 
+/*MapVote*/
 startvote()  
 {
 	wait getDvarFloat("scr_intermission_time");
@@ -3000,18 +3001,31 @@ startvote()
 }
 initvote()  
 {
-	if(getdvar("sv_maprotation")=="") 	setDvar("sv_mapRotation" , "gametype sd map mp_crossfire gametype sd map mp_crash gametype sd map mp_creek gametype sd map mp_countdown gametype sd map mp_vacant gametype sd map mp_convoy gametype sd map mp_broadcast gametype sd map mp_backlot gametype sd map mp_strike gametype sd map mp_pipeline gametype sd map mp_cargoship");
-	if(getdvar("scr_vote_time")=="") 	setDvar("scr_vote_time", 22);
-	if(getdvar("vote_winner_time")=="") 	setDvar("vote_winner_time", 6.0);
-	if(getdvar("scr_intermission_time")=="") 	setDvar("scr_intermission_time", 1);
+	if(getdvar("sv_maprotation")=="")
+		setDvar("sv_mapRotation" , "gametype sd map mp_crossfire gametype sd map mp_crash gametype sd map mp_creek gametype sd map mp_countdown gametype sd map mp_vacant gametype sd map mp_convoy gametype sd map mp_broadcast gametype sd map mp_backlot gametype sd map mp_strike gametype sd map mp_pipeline gametype sd map mp_cargoship");
+	if(getdvar("scr_vote_time")=="")
+		setDvar("scr_vote_time", 22);
+	if(getdvar("vote_winner_time")=="")
+		setDvar("vote_winner_time", 6.0);
+	if(getdvar("scr_intermission_time")=="")
+		setDvar("scr_intermission_time", 1);
 	maprotation = strTok(getDvar("sv_maprotation")," ");
-	level.voteMaps = []; 	tryes = 0; 	i = 0;	 	while(level.votemaps.size < 9 && tryes < 100)  
+	level.voteMaps = [];
+	tryes = 0;
+	i = 0;
+	while(level.votemaps.size < 9 && tryes < 100)  
 	{
-		tryes++; 		i = randomint(maprotation.size);
-		while(maprotation[i] != "gametype") 		i = randomint(maprotation.size);
-		i+=2; 		if((i+1)<maprotation.size && maprotation[i] == "map" && isLegal(maprotation[i+1] + ";" + maprotation[i-1])) 		level.votemaps[level.votemaps.size] =  maprotation[i+1] + ";" + maprotation[i-1]; 	 
+		tryes++;
+		i = randomint(maprotation.size);
+		while(maprotation[i] != "gametype"){ /*GPanelError*/
+			i = randomint(maprotation.size);
+		} 
+		i+=2;
+		if((i+1)<maprotation.size && maprotation[i] == "map" && isLegal(maprotation[i+1] + ";" + maprotation[i-1]))
+			level.votemaps[level.votemaps.size] =  maprotation[i+1] + ";" + maprotation[i-1]; 	 
 	}
-	waittillframeend; 	for( i=0; i < 9; i++ ) 	 
+	waittillframeend;
+	for( i=0; i < 9; i++ ) 	 
 	{
 		if(isdefined(level.votemaps[i])) 		
 			level.mapTok[i] = getMapNameString(strtok(level.votemaps[i],";")[0]) + " " + getGameTypeString( strtok(level.votemaps[i],";")[1])+"";
@@ -3032,7 +3046,8 @@ isLegal(map)
 }
 restructMapArray(oldArray, index)  
 {
-	restructArray = [];  	for( i=0; i < oldArray.size; i++)  
+	restructArray = [];  	
+	for( i=0; i < oldArray.size; i++)  
 	{
 		if(i < index)  		
 			restructArray[i] = oldArray[i]; 		
@@ -3084,7 +3099,9 @@ handleVoting()
 {
 	level endon( "time_over" );
 	level endon( "game_ended" );
-	level.RandomMap = level.mapTok[randomInt(level.mapTok.size)] ;   	level.winMap =  level.RandomMap;  	while( level.players.size > 0 ) 	 
+	level.RandomMap = level.mapTok[randomInt(level.mapTok.size)];
+	level.winMap =  level.RandomMap;  	
+	while( level.players.size > 0 ) 	 
 	{
 		winNumberA = getHighestVotedMap();
 		level.winMap = level.mapTok[winNumberA] ; 		
@@ -3111,9 +3128,27 @@ onDisconnect()
 }
 getPreviewName( map )  
 {
-	map=strtok(map," ")[0]; 	switch( map ) 	 
+	map=strtok(map," ")[0]; 	
+	switch( map ) 	 
 	{
-	case "ambush": 		return "loadscreen_mp_convoy"; 	case "wetwork": 		return "loadscreen_mp_cargoship"; 	case "district": 		return "loadscreen_mp_citystreets"; 	case "downpour": 		return "loadscreen_mp_farm";    	case "chinatown": 		return "loadscreen_mp_carentan"; 	case "restart": 		return "white";  		 	default: 		return ("loadscreen_mp_" + map);
+	case "ambush":
+		return "loadscreen_mp_convoy";
+	case "wetwork":
+		return "loadscreen_mp_cargoship";
+	case "district":
+		return "loadscreen_mp_citystreets";
+	case "downpour":
+		return "loadscreen_mp_farm";
+	case "chinatown":
+		return "loadscreen_mp_carentan";
+	case "nuketown":
+		return "loadscreen_mp_nuketown";
+	case "toujane":
+		return "loadscreen_mp_toujane_beta";
+	case "restart":
+		return "white";
+	default:
+		return ("loadscreen_mp_" + map);
 		
 	}
 
@@ -3122,7 +3157,23 @@ getGameTypeString( gt )
 {
 	switch( toLower( gt ) )  
 	{
-	case "war": 		gt = "(TDM)"; 		break; 	case "dm": 		gt = "(DM)"; 		break; 	case "sd": 		gt = "(S&D)"; 		break; 	case "koth": 		gt = "(HQ)"; 		break; 	case "sab": 		gt = "(SAB)"; 		break;			 	default: 		gt = ""; 	 
+		case "war":
+			gt = "(TDM)";
+			break;
+		case "dm":
+			gt = "(DM)";
+			break;
+		case "sd":
+			gt = "(S&D)";
+			break;
+		case "koth":
+			gt = "(HQ)";
+			break;
+		case "sab": 
+			gt = "(SAB)";
+			break;
+		default:
+			gt = ""; 	 
 	}
 	return gt;  
 }
@@ -3130,7 +3181,52 @@ getMapNameString( mapName )
 {
 	switch( toLower( mapName ) )  
 	{
-	case "mp_crash": 		mapName = "Crash"; 		break;	 	case "mp_crossfire": 		mapName = "Crossfire"; 		break;	 	case "mp_shipment": 		mapName = "Shipment"; 		break;	 	case "mp_convoy": 		mapName = "Ambush"; 		break;	 	case "mp_bloc": 		mapName = "Bloc"; 		break;	 	case "mp_bog": 		mapName = "Bog"; 		break;	 	case "mp_broadcast": 		mapName = "Broadcast"; 		break;	 	case "mp_carentan": 		mapName = "Chinatown"; 		break;			 	case "mp_countdown": 		mapName = "Countdown"; 		break;	 	case "mp_crash_snow": 		mapName = "Crash Snow"; 		break;	 	case "mp_creek": 		mapName = "Creek"; 		break;		 	case "mp_citystreets": 		mapName = "District"; 		break; 	case "mp_farm": 		mapName = "Downpour"; 		break; 	case "mp_killhouse": 		mapName = "Killhouse"; 		break; 	case "mp_overgrown": 		mapName = "Overgrown"; 		break; 	case "mp_pipeline": 		mapName = "Pipeline"; 		break; 	case "mp_showdown": 		mapName = "Showdown"; 		break; 	case "mp_strike": 		mapName = "Strike"; 		break; 	case "mp_vacant": 		mapName = "Vacant"; 		break;	 	case "mp_cargoship": 		mapName = "Wetwork"; 		break;		 	case "mp_backlot": 		mapName = "Backlot"; 		break;		 	case "mp_nuketown": 		mapName = "Nuketown"; 		break; 		 	case "mp_toujane_beta": 		mapName = "Toujane"; 		break;				 	 
+		case "mp_crash":
+			mapName = "Crash"; break;
+		case "mp_crossfire":
+			mapName = "Crossfire"; break;
+		case "mp_shipment":
+			mapName = "Shipment"; break;
+		case "mp_convoy":
+			mapName = "Ambush"; break;
+		case "mp_bloc":
+			mapName = "Bloc"; break;
+		case "mp_bog":
+			mapName = "Bog"; break;
+		case "mp_broadcast":
+			mapName = "Broadcast"; break;
+		case "mp_carentan":
+			mapName = "Chinatown"; break;
+		case "mp_countdown":
+			mapName = "Countdown"; break;
+		case "mp_crash_snow":
+			mapName = "Crash Snow"; break;
+		case "mp_creek":
+			mapName = "Creek"; break;
+		case "mp_citystreets":
+			mapName = "District"; break;
+		case "mp_farm":
+			mapName = "Downpour"; break;
+		case "mp_killhouse":
+			mapName = "Killhouse"; break;
+		case "mp_overgrown":
+			mapName = "Overgrown"; break;
+		case "mp_pipeline":
+			mapName = "Pipeline"; break;
+		case "mp_showdown":
+			mapName = "Showdown"; break;
+		case "mp_strike":
+			mapName = "Strike"; break;
+		case "mp_vacant":
+			mapName = "Vacant"; break;
+		case "mp_cargoship":
+			mapName = "Wetwork"; break;
+		case "mp_backlot":
+			mapName = "Backlot"; break;
+		case "mp_nuketown":
+			mapName = "Nuketown"; break;
+		case "mp_toujane_beta":
+			mapName = "Toujane"; break;				 	 
 	}
 	if(issubstr(mapName,"mp_")) mapName=getsubstr(3,mapName.size);
 	return mapName;  

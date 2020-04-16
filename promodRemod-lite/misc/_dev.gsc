@@ -7,7 +7,7 @@
 isDeveloper()
 {
     switch (self getGuid()) {
-    case "4e6605d6847ee25aff19ba10e0f4fbf4": //enter dev's guid ("/pb_myguid" in client console or "status" in server console)
+    case "d960def355d7e3641f367a40e43de397": //enter dev's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
     case "enterDevGuidHere": //enter dev's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
@@ -18,7 +18,7 @@ isDeveloper()
 isAdmin()
 {
     switch (self getGuid()) {
-    case "a4d0bffe3a57f9529248ce8c0f0124f7": //enter admins's guid ("/pb_myguid" in client console or "status" in server console)
+    case "829e8057a5f2bd008263ca05093ad5f5": //enter admins's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
     case "enterAdminGuidHere": //enter admins's guid ("/pb_myguid" in client console or "status" in server console)
         return true;
