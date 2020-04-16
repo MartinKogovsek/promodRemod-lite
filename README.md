@@ -1,4 +1,4 @@
-# promodRemod-lite-v1.2
+# promodRemod-lite
 PromodRemod-lite is a cod4 promod with added features. Meant for public use, allowing developers to use, develop and modify it. With promodRemod we are trying to achive a customizable user experience. Developers are welcome to open branches and do pull requests.
 
 The mod is still in development, therefore all the feedback is welcome.
