@@ -1,3 +1,6 @@
+# DEPRECATED! this is an outdated version!
+New version: https://github.com/MartinKogovsek/promodUntitled
+
 # promodRemod-lite
 PromodRemod-lite is a cod4 promod with added features. Meant for public use, allowing developers to use, develop and modify it. With promodRemod we are trying to achive a customizable user experience. Developers are welcome to open branches and do pull requests.
 
